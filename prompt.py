@@ -18,7 +18,7 @@ Make it creative and attractive.
 def get_qa_prompt(question, history=None):
     context = ""
     if history:
-        for role, msg in history[-6:]:  # last few turns for context
+        for role, msg in history[-6:]:
             context += f"{role}: {msg}\n"
 
     return f"""
@@ -39,10 +39,14 @@ def get_summary_prompt(text, length="medium"):
         "medium": "a short paragraph (5-7 sentences)",
         "detailed": "a detailed multi-paragraph summary with key points as bullets",
     }
+
     detail = length_map.get(length, length_map["medium"])
 
     return f"""
-You are an expert summarizer. Summarize the following text in {detail}.
+You are an expert summarizer.
+
+Summarize the following text in {detail}.
+
 Capture the key ideas, avoid fluff, and keep it faithful to the original meaning.
 
 Text:
